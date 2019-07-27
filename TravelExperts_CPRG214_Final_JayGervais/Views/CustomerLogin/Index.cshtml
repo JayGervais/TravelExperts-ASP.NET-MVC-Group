@@ -1,0 +1,18 @@
+﻿@model TravelExperts_CPRG214_Final_JayGervais.Models.Customer
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@{ 
+    if(Session["CustomerId"] == null)
+    {
+        Response.Redirect("~/CustomerLogin/Login");
+    }
+    else
+    {
+        Response.Redirect("~/Customer/Details");
+    }
+}
+
+
