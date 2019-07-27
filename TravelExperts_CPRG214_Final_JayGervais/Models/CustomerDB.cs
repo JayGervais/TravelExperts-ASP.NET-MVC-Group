@@ -18,8 +18,8 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
             {
                 using (SqlCommand sqlCommand = new SqlCommand(addCustomerQuery, con))
                 {
-                    //string password = Convert.ToString(cust.CustPass);
-                    //var hash = PassHash.SecurePasswordHasher.Hash(password);
+                    string password = Convert.ToString(cust.CustPass);
+                    var hash = PassHash.SecurePasswordHasher.Hash(password);
 
                     sqlCommand.Parameters.AddWithValue("@CustFirstName", cust.CustFirstName);
                     sqlCommand.Parameters.AddWithValue("@CustLastName", cust.CustLastName);
@@ -31,8 +31,8 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
                     sqlCommand.Parameters.AddWithValue("@CustHomePhone", cust.CustHomePhone);
                     sqlCommand.Parameters.AddWithValue("@CustBusPhone", cust.CustBusPhone);
                     sqlCommand.Parameters.AddWithValue("@CustEmail", cust.CustEmail);
-                    //sqlCommand.Parameters.AddWithValue("@CustPass", hash);
-                    sqlCommand.Parameters.AddWithValue("@CustPass", cust.CustPass);
+                    sqlCommand.Parameters.AddWithValue("@CustPass", hash);
+                    //sqlCommand.Parameters.AddWithValue("@CustPass", cust.CustPass);
 
                     con.Open();
                     sqlCommand.ExecuteNonQuery();
@@ -40,41 +40,38 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
             }
         }
 
-        // customer login
         public static int CustomerLogin(CustomerLogin login)
         {
             int custId = -1;
-            string addCustomerQuery = @"SELECT CustomerId " +
-                                       "FROM Customers WHERE CustEmail = @CustEmail AND CustPass = @CustPass";
+            string addCustomerQuery = @"SELECT CustomerId, CustPass " +
+                                       "FROM Customers WHERE CustEmail = @CustEmail";
             using (SqlConnection con = TravelExpertsConn.GetConnection())
             {
                 using (SqlCommand sqlCommand = new SqlCommand(addCustomerQuery, con))
                 {
                     sqlCommand.Parameters.AddWithValue("@CustEmail", login.CustEmail);
-                    sqlCommand.Parameters.AddWithValue("@CustPass", login.CustPass);
 
                     con.Open();
                     SqlDataReader dr = sqlCommand.ExecuteReader();
 
                     if (dr.Read())
                     {
-                        //customer = new Customer();
-                        ////string hashpass = Convert.ToString(dr["CustPass"]);
-                        ////var result = PassHash.SecurePasswordHasher.Verify(login.CustPass, hashpass);                    
-                        //customer.CustEmail = dr["CustEmail"].ToString();
-                        //customer.CustPass = dr["CustPass"].ToString();
-                        ////if (result == true)
-                        //{
-                        // HttpContext.Current.Session["CustEmail"] = Convert.ToString(customer.CustEmail);
-                        //}
+                        string hashpass = Convert.ToString(dr["CustPass"]);
+                        var result = PassHash.SecurePasswordHasher.Verify(login.CustPass, hashpass);
 
-                        custId = Convert.ToInt32(dr["CustomerId"]);
+                        if (result)
+                        {
+                            custId = Convert.ToInt32(dr["CustomerId"]);
+                        }
                     }
                     dr.Close();
                 }
             }
             return custId;
         }
+
+
+
 
         // return customer details
         public static Customer CustomerDetails(int custID)
