@@ -58,7 +58,6 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
                     {
                         string hashpass = Convert.ToString(dr["CustPass"]);
                         var result = PassHash.SecurePasswordHasher.Verify(login.CustPass, hashpass);
-
                         if (result)
                         {
                             custId = Convert.ToInt32(dr["CustomerId"]);
@@ -69,9 +68,6 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
             }
             return custId;
         }
-
-
-
 
         // return customer details
         public static Customer CustomerDetails(int custID)

@@ -22,3 +22,40 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.jumbotron {
+    background-image: url('../Images/bridge.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 60px;
+    padding-top: 60px;
+}
+
+.jumbotron h1 {
+    font-weight: bold;
+    text-shadow: 4px 0px 5px #000;
+    color: #fff;
+    font-size: 100px;
+}
+
+.jumbotron p {
+    font-weight: bold;
+    text-shadow: 4px 0px 5px #000;
+    color: #fff;
+}
+
+.btn.btn-primary.btn-lg {
+    background-color: #007a4b;
+    border-color: #007a4b;
+}
+
+a.btn.btn-primary.btn-lg:hover {
+    background-color: #14a83c;
+    border-color: #14a83c;
+}
+
+footer {
+    text-align: center;
+}

@@ -6,11 +6,15 @@ using System.Web;
 
 namespace TravelExperts_CPRG214_Final_JayGervais.Models
 {
+    ///
+    /// SecurePasswordHasher - Not Custom Written. This was shared on Stack Overflow
+    /// https://gist.github.com/Nikpds/1ecb330755fc9838e75590b6f2568a4a
+    /// 
     public class PassHash
     {
         public static class SecurePasswordHasher
         {
-            /// Size of salt - courtesy of Stack Overflow comments - not custom written
+            /// Size of salt
             private const int SaltSize = 16;
             private const int HashSize = 20;
 
