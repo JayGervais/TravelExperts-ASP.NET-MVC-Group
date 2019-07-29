@@ -13,6 +13,11 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
         public int CustomerId { get; set; }
 
         [Required]
+        [StringLength(50)]
+        [DisplayName("Customer ID")]
+        public string CustID { get; set; }
+
+        [Required]
         [StringLength(25)]
         [DisplayName("First Name")]
         public string CustFirstName { get; set; }
@@ -55,7 +60,6 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
         [DisplayName("Business Phone")]
         public string CustBusPhone { get; set; }
 
-        [Required]
         [StringLength(50)]
         [DisplayName("Email")]
         public string CustEmail { get; set; }

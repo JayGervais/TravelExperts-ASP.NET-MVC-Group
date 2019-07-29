@@ -11,8 +11,8 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
     {
         [Required]
         [StringLength(50)]
-        [DisplayName("Email")]
-        public string CustEmail { get; set; }
+        [DisplayName("Customer ID")]
+        public string CustID { get; set; }
 
         [StringLength(250)]
         [DataType(DataType.Password)]

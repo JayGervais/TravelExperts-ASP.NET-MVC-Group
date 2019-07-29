@@ -13,8 +13,8 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
         public static void CreateAccount(Customer cust)
         {
             string addCustomerQuery = @"INSERT INTO Customers " +
-                                       "(CustFirstName, CustLastName, CustAddress, CustCity, CustProv, CustPostal, CustCountry, CustHomePhone, CustBusPhone, CustEmail, CustPass) " +
-                                       "VALUES (@CustFirstName, @CustLastName, @CustAddress, @CustCity, @CustProv, @CustPostal, @CustCountry, @CustHomePhone, @CustBusPhone, @CustEmail, @CustPass)";
+                                       "(CustID, CustFirstName, CustLastName, CustAddress, CustCity, CustProv, CustPostal, CustCountry, CustHomePhone, CustBusPhone, CustEmail, CustPass) " +
+                                       "VALUES (@CustID, @CustFirstName, @CustLastName, @CustAddress, @CustCity, @CustProv, @CustPostal, @CustCountry, @CustHomePhone, @CustBusPhone, @CustEmail, @CustPass)";
             using (SqlConnection con = TravelExpertsConn.GetConnection())
             {
                 using (SqlCommand sqlCommand = new SqlCommand(addCustomerQuery, con))
@@ -23,6 +23,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
                     string password = Convert.ToString(cust.CustPass);
                     var hash = PassHash.SecurePasswordHasher.Hash(password);
 
+                    sqlCommand.Parameters.AddWithValue("@CustID", cust.CustID);
                     sqlCommand.Parameters.AddWithValue("@CustFirstName", cust.CustFirstName);
                     sqlCommand.Parameters.AddWithValue("@CustLastName", cust.CustLastName);
                     sqlCommand.Parameters.AddWithValue("@CustAddress", cust.CustAddress);
@@ -46,12 +47,12 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
         {
             int custId = -1;
             string addCustomerQuery = @"SELECT CustomerId, CustPass " +
-                                       "FROM Customers WHERE CustEmail = @CustEmail";
+                                       "FROM Customers WHERE CustID = @CustID";
             using (SqlConnection con = TravelExpertsConn.GetConnection())
             {
                 using (SqlCommand sqlCommand = new SqlCommand(addCustomerQuery, con))
                 {
-                    sqlCommand.Parameters.AddWithValue("@CustEmail", login.CustEmail);
+                    sqlCommand.Parameters.AddWithValue("@CustID", login.CustID);
 
                     con.Open();
                     SqlDataReader dr = sqlCommand.ExecuteReader();
@@ -76,7 +77,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
         public static Customer CustomerDetails(int custID)
         {
             Customer details = null;
-            string noteDetailsQuery = @"SELECT CustFirstName, CustLastName, CustAddress, CustCity, CustProv, CustPostal, CustCountry, CustHomePhone, CustBusPhone, CustEmail, AgentId " +
+            string noteDetailsQuery = @"SELECT CustID, CustFirstName, CustLastName, CustAddress, CustCity, CustProv, CustPostal, CustCountry, CustHomePhone, CustBusPhone, CustEmail, AgentId " +
                                        "FROM Customers WHERE CustomerId = @CustomerId";
 
             using (SqlConnection con = TravelExpertsConn.GetConnection())
@@ -90,6 +91,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
                     if (reader.Read())
                     {
                         details = new Customer();
+                        details.CustID = reader["CustID"].ToString();
                         details.CustFirstName = reader["CustFirstName"].ToString();
                         details.CustLastName = reader["CustLastName"].ToString();
                         details.CustAddress = reader["CustAddress"].ToString();
@@ -117,7 +119,8 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
         {
             int updateCount = 0;
             string updateQuery = @"UPDATE Customers " +
-                                  "SET CustFirstName = @CustFirstName, " +
+                                  "SET CustID = @CustID " +
+                                  "CustFirstName = @CustFirstName, " +
                                   "CustLastName = @CustLastName, " +
                                   "CustAddress = @CustAddress, " +
                                   "CustCity = @CustCity, " +
@@ -139,6 +142,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
                     var hash = PassHash.SecurePasswordHasher.Hash(password);
 
                     sqlCommand.Parameters.AddWithValue("@CurrentCustId", id);
+                    sqlCommand.Parameters.AddWithValue("@CustID", newCust.CustID);
                     sqlCommand.Parameters.AddWithValue("@CustFirstName", newCust.CustFirstName);
                     sqlCommand.Parameters.AddWithValue("@CustLastName", newCust.CustLastName);
                     sqlCommand.Parameters.AddWithValue("@CustAddress", newCust.CustAddress);
