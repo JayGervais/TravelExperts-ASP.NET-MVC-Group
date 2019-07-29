@@ -6,6 +6,7 @@ using System.Web;
 
 namespace TravelExperts_CPRG214_Final_JayGervais.Models
 {
+    // customer class written by Jay Gervais
     public class CustomerDB
     {
         // create new customer account
@@ -18,6 +19,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
             {
                 using (SqlCommand sqlCommand = new SqlCommand(addCustomerQuery, con))
                 {
+                    // hash password
                     string password = Convert.ToString(cust.CustPass);
                     var hash = PassHash.SecurePasswordHasher.Hash(password);
 
@@ -32,7 +34,6 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
                     sqlCommand.Parameters.AddWithValue("@CustBusPhone", cust.CustBusPhone);
                     sqlCommand.Parameters.AddWithValue("@CustEmail", cust.CustEmail);
                     sqlCommand.Parameters.AddWithValue("@CustPass", hash);
-                    //sqlCommand.Parameters.AddWithValue("@CustPass", cust.CustPass);
 
                     con.Open();
                     sqlCommand.ExecuteNonQuery();
@@ -40,6 +41,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
             }
         }
 
+        // customer login
         public static int CustomerLogin(CustomerLogin login)
         {
             int custId = -1;
@@ -56,6 +58,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
 
                     if (dr.Read())
                     {
+                        // retrieve and verify password against hash
                         string hashpass = Convert.ToString(dr["CustPass"]);
                         var result = PassHash.SecurePasswordHasher.Verify(login.CustPass, hashpass);
                         if (result)
@@ -87,7 +90,6 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
                     if (reader.Read())
                     {
                         details = new Customer();
-                        //details.CustomerId = Convert.ToInt32(reader["CustomerId"]);
                         details.CustFirstName = reader["CustFirstName"].ToString();
                         details.CustLastName = reader["CustLastName"].ToString();
                         details.CustAddress = reader["CustAddress"].ToString();
@@ -133,8 +135,10 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
             {
                 using (SqlCommand sqlCommand = new SqlCommand(updateQuery, con))
                 {
-                    sqlCommand.Parameters.AddWithValue("@CurrentCustId", id);
+                    string password = Convert.ToString(newCust.CustPass);
+                    var hash = PassHash.SecurePasswordHasher.Hash(password);
 
+                    sqlCommand.Parameters.AddWithValue("@CurrentCustId", id);
                     sqlCommand.Parameters.AddWithValue("@CustFirstName", newCust.CustFirstName);
                     sqlCommand.Parameters.AddWithValue("@CustLastName", newCust.CustLastName);
                     sqlCommand.Parameters.AddWithValue("@CustAddress", newCust.CustAddress);
@@ -146,8 +150,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
                     sqlCommand.Parameters.AddWithValue("@CustBusPhone", newCust.CustBusPhone);
                     sqlCommand.Parameters.AddWithValue("@CustEmail", newCust.CustEmail);
                     sqlCommand.Parameters.AddWithValue("@AgentId", newCust.AgentId);
-                    //sqlCommand.Parameters.AddWithValue("@CustPass", hash);
-                    sqlCommand.Parameters.AddWithValue("@CustPass", newCust.CustPass);
+                    sqlCommand.Parameters.AddWithValue("@CustPass", hash);
                     con.Open();
                     sqlCommand.ExecuteNonQuery();
                 }
@@ -158,5 +161,4 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
 
 
     }
-
 }
