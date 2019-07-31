@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-
+/// <summary>
+/// Customer DB Class by Jay Gervais
+/// </summary>
 namespace TravelExperts_CPRG214_Final_JayGervais.Models
 {
     // customer class written by Jay Gervais

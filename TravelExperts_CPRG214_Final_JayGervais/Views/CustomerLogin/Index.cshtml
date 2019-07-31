@@ -3,9 +3,12 @@
 @{
     ViewBag.Title = "Index";
 }
+<!--
+Customer Login Index redirect page by Jay Gervais
+-->
 
-@{ 
-    if(Session["CustomerId"] == null)
+@{
+    if (Session["CustomerId"] == null)
     {
         Response.Redirect("~/CustomerLogin/Login");
     }

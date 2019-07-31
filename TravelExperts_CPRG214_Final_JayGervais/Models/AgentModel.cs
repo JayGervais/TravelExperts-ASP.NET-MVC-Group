@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-
+/// <summary>
+/// Agent Model by Jay Gervais
+/// </summary>
 namespace TravelExperts_CPRG214_Final_JayGervais.Models
 {
     public class AgentModel

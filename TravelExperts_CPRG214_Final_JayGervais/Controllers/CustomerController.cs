@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TravelExperts_CPRG214_Final_JayGervais.Models;
-
+/// <summary>
+/// Customer Controller by Jay Gervais
+/// </summary>
 namespace TravelExperts_CPRG214_Final_JayGervais.Controllers
 {
     public class CustomerController : Controller

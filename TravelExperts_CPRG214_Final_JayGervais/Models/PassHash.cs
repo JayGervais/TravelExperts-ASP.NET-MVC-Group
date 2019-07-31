@@ -7,7 +7,7 @@ using System.Web;
 namespace TravelExperts_CPRG214_Final_JayGervais.Models
 {
     ///
-    /// SecurePasswordHasher - Not Custom Written. This was shared on Stack Overflow
+    /// SecurePasswordHasher - Encorporated by Jay Gervais from the following link:
     /// https://gist.github.com/Nikpds/1ecb330755fc9838e75590b6f2568a4a
     /// 
     public class PassHash

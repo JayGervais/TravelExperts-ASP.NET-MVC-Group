@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-
+/// <summary>
+/// Customer Constructor by Jay Gervais
+/// </summary>
 namespace TravelExperts_CPRG214_Final_JayGervais.Models
 {
     public class Customer
