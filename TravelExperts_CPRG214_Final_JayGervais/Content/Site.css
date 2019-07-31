@@ -60,3 +60,48 @@ a.btn.btn-primary.btn-lg:hover {
 footer {
     text-align: center;
 }
+
+.card {
+    width: 100% !important;
+    margin-bottom: 30px;
+    border-radius: 25px;
+    -webkit-box-shadow: 0 8px 25px -15px black;
+    -moz-box-shadow: 0 8px 25px -15px black;
+    box-shadow: 0 8px 25px -15px black;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-img-top {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: #004b4f !important;
+    border-color: #004b4f !important;
+}
+
+.btn-primary:hover {
+    background-color: #A1591F !important;
+    border-color: #A1591F !important;
+}
+
+p.dates {
+    font-weight: lighter;
+    font-size: 85%;
+    opacity: 0.65;
+}
+
+.card-title {
+    font-weight: bold;
+    color: #004b4f;
+    font-size: 30px;
+}
+
+.validation-summary-errors text-danger ul li {
+    list-style-type: none;
+}

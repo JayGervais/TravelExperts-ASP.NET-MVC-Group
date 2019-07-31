@@ -15,6 +15,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
             string addCustomerQuery = @"INSERT INTO Customers " +
                                        "(CustID, CustFirstName, CustLastName, CustAddress, CustCity, CustProv, CustPostal, CustCountry, CustHomePhone, CustBusPhone, CustEmail, CustPass) " +
                                        "VALUES (@CustID, @CustFirstName, @CustLastName, @CustAddress, @CustCity, @CustProv, @CustPostal, @CustCountry, @CustHomePhone, @CustBusPhone, @CustEmail, @CustPass)";
+
             using (SqlConnection con = TravelExpertsConn.GetConnection())
             {
                 using (SqlCommand sqlCommand = new SqlCommand(addCustomerQuery, con))
@@ -48,6 +49,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
             int custId = -1;
             string addCustomerQuery = @"SELECT CustomerId, CustPass " +
                                        "FROM Customers WHERE CustID = @CustID";
+
             using (SqlConnection con = TravelExpertsConn.GetConnection())
             {
                 using (SqlCommand sqlCommand = new SqlCommand(addCustomerQuery, con))

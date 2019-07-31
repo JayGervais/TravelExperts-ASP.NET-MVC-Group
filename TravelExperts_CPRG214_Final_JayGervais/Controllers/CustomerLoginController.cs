@@ -15,16 +15,31 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Controllers
             return View();
         }
 
+        // GET: CustomerLogin
+        public ActionResult Login()
+        {
+            return View();
+        }
+
         // POST:
+        [HttpPost]
         public ActionResult Login(CustomerLogin login)
         {
             if (ModelState.IsValid)
             {
                 try
-                {
+                {   
                     int custId = CustomerDB.CustomerLogin(login);
-                    Session["CustomerId"] = custId;
-                    return RedirectToAction("Index");
+                    if(custId == -1)
+                    {
+                        ModelState.AddModelError("", "Username or password does not match");
+                        return View(login);
+                    }
+                    else
+                    {
+                        Session["CustomerId"] = custId;
+                        return RedirectToAction("Index");
+                    }
                 }
                 catch
                 {

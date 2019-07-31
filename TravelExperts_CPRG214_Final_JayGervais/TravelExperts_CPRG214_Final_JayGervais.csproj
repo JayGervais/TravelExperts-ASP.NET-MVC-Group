@@ -131,6 +131,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\CustomerLoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PackageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -138,6 +139,8 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerDB.cs" />
     <Compile Include="Models\CustomerLogin.cs" />
+    <Compile Include="Models\Package.cs" />
+    <Compile Include="Models\PackageDB.cs" />
     <Compile Include="Models\PassHash.cs" />
     <Compile Include="Models\TravelExpertsConn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -164,9 +167,11 @@
     <Content Include="Images\caribbean.jpg" />
     <Content Include="Images\compass.png" />
     <Content Include="Images\europe.jpg" />
+    <Content Include="Images\hawaii.jpg" />
     <Content Include="Images\mediterranean.jpg" />
     <Content Include="Images\mountainbeach.jpg" />
     <Content Include="Images\mountains.jpg" />
+    <Content Include="Images\polynesia.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -201,6 +206,7 @@
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\CustomerLogin\Logout.cshtml" />
+    <Content Include="Views\Package\Packages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
