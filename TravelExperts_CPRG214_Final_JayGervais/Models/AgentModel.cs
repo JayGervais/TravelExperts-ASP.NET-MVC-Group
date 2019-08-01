@@ -40,5 +40,10 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
 
         [RegularExpression("([0-9]+)")]
         public int AgencyId { get; set; }
+
+        public static implicit operator string(AgentModel v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

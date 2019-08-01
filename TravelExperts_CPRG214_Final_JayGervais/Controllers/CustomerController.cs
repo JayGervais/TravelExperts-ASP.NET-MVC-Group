@@ -22,6 +22,10 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Controllers
         {
             int id = Convert.ToInt32(Session["CustomerId"]);
             Customer customer = CustomerDB.CustomerDetails(id);
+
+            //List<Customer> agentIds = CustomerDB.GetAgentIdDropdown();
+            //ViewBag.Agents = new SelectList(agentIds);
+
             return View(customer);
         }
 
@@ -59,6 +63,10 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Controllers
         {
             int id = Convert.ToInt32(Session["CustomerId"]);
             Customer currentCust = CustomerDB.CustomerDetails(id);
+
+            List<Customer> agentIds = CustomerDB.GetAgentIdDropdown();
+            ViewBag.AgentId = new SelectList(agentIds);
+
             return View(currentCust);
         }
 

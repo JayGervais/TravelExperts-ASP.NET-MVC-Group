@@ -57,7 +57,6 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
                 using (SqlCommand sqlCommand = new SqlCommand(addCustomerQuery, con))
                 {
                     sqlCommand.Parameters.AddWithValue("@CustID", login.CustID);
-
                     con.Open();
                     SqlDataReader dr = sqlCommand.ExecuteReader();
 
@@ -166,7 +165,28 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
             return updateCount;
         }
 
+        public static List<Customer> GetAgentIdDropdown()
+        {
+            List<Customer> agentIdList = new List<Customer>();
+            string getAgentIdQuery = @"SELECT AgentId FROM Agents";
 
-
+            using (SqlConnection con = TravelExpertsConn.GetConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand(getAgentIdQuery, con))
+                {
+                    con.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    Customer Agents;
+                    while (reader.Read())
+                    {
+                        Agents = new Customer();
+                        Agents.AgentId = Convert.ToInt32(reader["AgentId"]);
+                        agentIdList.Add(Agents);
+                    }
+                    con.Close();
+                }
+            }
+            return agentIdList;
+        }
     }
 }

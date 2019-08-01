@@ -66,16 +66,21 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
         [DisplayName("Email")]
         public string CustEmail { get; set; }
 
+        [DisplayName("Agent")]
         public int AgentId { get; set; }
+
+        //[DisplayName("Agent")]
+        //public virtual ICollection<AgentModel> Agents { get; set; }
 
         [StringLength(250)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string CustPass { get; set; }
 
-        [Compare("CustPass", ErrorMessage = "Confirm password doesn't match, Type again !")]
+        [Compare("CustPass", ErrorMessage = "Confirm password doesn't match, Type again!")]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
         public string ConfirmPassword { get; set; }
+
     }
 }
