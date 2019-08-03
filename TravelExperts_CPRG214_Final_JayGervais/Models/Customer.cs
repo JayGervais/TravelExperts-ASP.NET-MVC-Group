@@ -45,20 +45,24 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
         public string CustProv { get; set; }
 
         [Required]
-        [StringLength(7)]
+        [DataType(DataType.PostalCode)]
+        [RegularExpression(@"^\(?([ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ] ?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9])$", ErrorMessage = "Not a valid postal code")]
         [DisplayName("Postal Code")]
         public string CustPostal { get; set; }
 
+        [Required]
         [StringLength(25)]
         [DisplayName("Country")]
         public string CustCountry { get; set; }
 
-        [StringLength(20)]
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         [DisplayName("Home Phone")]
         public string CustHomePhone { get; set; }
 
-        [Required]
-        [StringLength(20)]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         [DisplayName("Business Phone")]
         public string CustBusPhone { get; set; }
 
@@ -69,6 +73,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
         [DisplayName("Agent")]
         public int? AgentId { get; set; }
 
+        [Required]
         [StringLength(250)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
