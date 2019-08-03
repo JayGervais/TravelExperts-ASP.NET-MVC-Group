@@ -136,6 +136,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AgentDB.cs" />
+    <Compile Include="Models\AgentDropdown.cs" />
     <Compile Include="Models\AgentModel.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerDB.cs" />

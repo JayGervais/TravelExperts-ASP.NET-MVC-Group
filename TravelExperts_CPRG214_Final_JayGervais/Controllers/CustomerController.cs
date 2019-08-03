@@ -11,6 +11,8 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Controllers
 {
     public class CustomerController : Controller
     {
+        public SelectList AgentIdList { get; private set; }
+
         // GET: Customer
         public ActionResult Index()
         {
@@ -44,7 +46,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Controllers
                 try
                 {
                     // add new user
-                    CustomerDB.CreateAccount(cust);
+                    CustomerDB.CreateAccount(cust);                
                     return RedirectToAction("Index");
                 }
                 catch
@@ -64,8 +66,9 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Controllers
             int id = Convert.ToInt32(Session["CustomerId"]);
             Customer currentCust = CustomerDB.CustomerDetails(id);
 
-            List<Customer> agentIds = CustomerDB.GetAgentIdDropdown();
-            ViewBag.AgentId = new SelectList(agentIds);
+            AgentIdList = new SelectList(new List<int>());
+            AgentIdList = new SelectList(CustomerDB.GetAgentIdDropdown().AsEnumerable(), Convert.ToString(currentCust.AgentIdList), Convert.ToString(currentCust.AgentIdList), currentCust.AgentId);
+            ViewBag.AgentIdList = AgentIdList;
 
             return View(currentCust);
         }
@@ -79,7 +82,17 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Controllers
                 try
                 {
                     int id = Convert.ToInt32(Session["CustomerId"]);
-                    CustomerDB.EditCustomer(id, customer);
+
+                    AgentIdList = new SelectList(CustomerDB.GetAgentIdDropdown(), Convert.ToString(customer.AgentId), Convert.ToString(customer.AgentId), Convert.ToInt32(customer.AgentId));
+                    ViewBag.AgentIdList = AgentIdList;
+
+
+
+
+                    int agentId = customer.AgentId;
+
+                    CustomerDB.EditCustomer(id, agentId, customer);
+
                     return RedirectToAction("Details");
                 }
                 catch

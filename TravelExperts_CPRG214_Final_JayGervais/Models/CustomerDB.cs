@@ -118,7 +118,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
         }
 
         // edit customer
-        public static int EditCustomer(int id, Customer newCust)
+        public static int EditCustomer(int id, int agentId, Customer newCust)
         {
             int updateCount = 0;
             string updateQuery = @"UPDATE Customers " +
@@ -156,7 +156,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
                     sqlCommand.Parameters.AddWithValue("@CustHomePhone", newCust.CustHomePhone);
                     sqlCommand.Parameters.AddWithValue("@CustBusPhone", newCust.CustBusPhone);
                     sqlCommand.Parameters.AddWithValue("@CustEmail", newCust.CustEmail);
-                    sqlCommand.Parameters.AddWithValue("@AgentId", newCust.AgentId);
+                    sqlCommand.Parameters.AddWithValue("@AgentId", agentId);
                     sqlCommand.Parameters.AddWithValue("@CustPass", hash);
                     con.Open();
                     sqlCommand.ExecuteNonQuery();
@@ -165,9 +165,9 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
             return updateCount;
         }
 
-        public static List<Customer> GetAgentIdDropdown()
+        public static List<int> GetAgentIdDropdown()
         {
-            List<Customer> agentIdList = new List<Customer>();
+            List<int> agentIdList = new List<int>();
             string getAgentIdQuery = @"SELECT AgentId FROM Agents";
 
             using (SqlConnection con = TravelExpertsConn.GetConnection())
@@ -176,12 +176,11 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
                 {
                     con.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
-                    Customer Agents;
+                    Customer Agents = new Customer();
                     while (reader.Read())
                     {
-                        Agents = new Customer();
                         Agents.AgentId = Convert.ToInt32(reader["AgentId"]);
-                        agentIdList.Add(Agents);
+                        agentIdList.Add(Agents.AgentId);
                     }
                     con.Close();
                 }
