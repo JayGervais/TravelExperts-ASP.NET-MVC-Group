@@ -67,9 +67,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
         public string CustEmail { get; set; }
 
         [DisplayName("Agent")]
-        public int AgentId { get; set; }
-
-        public IEnumerable<System.Web.Mvc.SelectListItem> AgentIdList { get; set; }
+        public int? AgentId { get; set; }
 
         [StringLength(250)]
         [DataType(DataType.Password)]

@@ -80,7 +80,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
         public static Customer CustomerDetails(int custID)
         {
             Customer details = null;
-            string noteDetailsQuery = @"SELECT CustID, CustFirstName, CustLastName, CustAddress, CustCity, CustProv, CustPostal, CustCountry, CustHomePhone, CustBusPhone, CustEmail, AgentId " +
+            string noteDetailsQuery = @"SELECT CustID, CustFirstName, CustLastName, CustAddress, CustCity, CustProv, CustPostal, CustCountry, CustHomePhone, CustBusPhone, CustEmail " +
                                        "FROM Customers WHERE CustomerId = @CustomerId";
 
             using (SqlConnection con = TravelExpertsConn.GetConnection())
@@ -106,10 +106,14 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
                         details.CustBusPhone = reader["CustBusPhone"].ToString();
                         details.CustEmail = reader["CustEmail"].ToString();
 
-                        if (reader["AgentId"] != DBNull.Value)
-                        {
-                            details.AgentId = Convert.ToInt32(reader["AgentId"]);
-                        }
+                        //if (reader["AgentId"] != DBNull.Value)
+                        //{
+                        //    details.AgentId = Convert.ToInt32(reader["AgentId"]);
+                        //}
+                        //else
+                        //{
+                        //    details.AgentId = null;
+                        //}
                     }
                     con.Close();
                 }
@@ -118,11 +122,11 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
         }
 
         // edit customer
-        public static int EditCustomer(int id, int agentId, Customer newCust)
+        public static int EditCustomer(int id, Customer newCust)
         {
             int updateCount = 0;
             string updateQuery = @"UPDATE Customers " +
-                                  "SET CustID = @CustID " +
+                                  "SET CustID = @CustID, " +
                                   "CustFirstName = @CustFirstName, " +
                                   "CustLastName = @CustLastName, " +
                                   "CustAddress = @CustAddress, " +
@@ -133,7 +137,6 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
                                   "CustHomePhone = @CustHomePhone, " +
                                   "CustBusPhone = @CustBusPhone, " +
                                   "CustEmail = @CustEmail, " +
-                                  "AgentId = @AgentId, " +
                                   "CustPass = @CustPass " +
                                   "WHERE CustomerId = @CurrentCustId";
 
@@ -141,6 +144,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
             {
                 using (SqlCommand sqlCommand = new SqlCommand(updateQuery, con))
                 {
+
                     string password = Convert.ToString(newCust.CustPass);
                     var hash = PassHash.SecurePasswordHasher.Hash(password);
 
@@ -156,36 +160,22 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
                     sqlCommand.Parameters.AddWithValue("@CustHomePhone", newCust.CustHomePhone);
                     sqlCommand.Parameters.AddWithValue("@CustBusPhone", newCust.CustBusPhone);
                     sqlCommand.Parameters.AddWithValue("@CustEmail", newCust.CustEmail);
-                    sqlCommand.Parameters.AddWithValue("@AgentId", agentId);
+
+                    //if (newCust.AgentId == null)
+                    //{
+                    //    sqlCommand.Parameters.AddWithValue("@AgentId", DBNull.Value);
+                    //}
+                    //else
+                    //{
+                    //    sqlCommand.Parameters.AddWithValue("@AgentId", Convert.ToInt32(newCust.AgentId));
+                    //}
+
                     sqlCommand.Parameters.AddWithValue("@CustPass", hash);
                     con.Open();
                     sqlCommand.ExecuteNonQuery();
                 }
             }
             return updateCount;
-        }
-
-        public static List<int> GetAgentIdDropdown()
-        {
-            List<int> agentIdList = new List<int>();
-            string getAgentIdQuery = @"SELECT AgentId FROM Agents";
-
-            using (SqlConnection con = TravelExpertsConn.GetConnection())
-            {
-                using (SqlCommand cmd = new SqlCommand(getAgentIdQuery, con))
-                {
-                    con.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    Customer Agents = new Customer();
-                    while (reader.Read())
-                    {
-                        Agents.AgentId = Convert.ToInt32(reader["AgentId"]);
-                        agentIdList.Add(Agents.AgentId);
-                    }
-                    con.Close();
-                }
-            }
-            return agentIdList;
         }
     }
 }
