@@ -109,3 +109,8 @@ p.dates {
 .validation-summary-errors text-danger ul li {
     list-style-type: none;
 }
+
+img.img100radius {
+    width: 100%;
+    border-radius:5%;
+}

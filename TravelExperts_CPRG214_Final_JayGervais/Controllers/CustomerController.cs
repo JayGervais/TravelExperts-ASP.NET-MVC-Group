@@ -62,6 +62,12 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Controllers
         {
             int id = Convert.ToInt32(Session["CustomerId"]);
             Customer currentCust = CustomerDB.CustomerDetails(id);
+
+            // function for adding AgentId dropdown - commented out for later enabling
+            //AgentIdList = new SelectList(new List<int>());
+            //AgentIdList = new SelectList(CustomerDB.GetAgentIdDropdown().AsEnumerable(), Convert.ToString(currentCust.AgentIdList), Convert.ToString(currentCust.AgentIdList), currentCust.AgentId);
+            //ViewBag.AgentIdList = AgentIdList;
+
             return View(currentCust);
         }
 
@@ -75,6 +81,11 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Controllers
                 {
                     int id = Convert.ToInt32(Session["CustomerId"]);
                     CustomerDB.EditCustomer(id, customer);
+
+                    // function for adding AgentId dropdown - commented out for later enabling
+                    //AgentIdList = new SelectList(CustomerDB.GetAgentIdDropdown(), Convert.ToString(customer.AgentId), Convert.ToString(customer.AgentId), Convert.ToInt32(customer.AgentId));
+                    //ViewBag.AgentIdList = AgentIdList;
+
                     return RedirectToAction("Details");
                 }
                 catch

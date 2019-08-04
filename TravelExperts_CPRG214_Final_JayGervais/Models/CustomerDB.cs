@@ -177,5 +177,29 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
             }
             return updateCount;
         }
+
+        // list function for retrieving AgentIds - created for later enabling
+        public static List<int?> GetAgentIdDropdown()
+        {
+            List<int?> agentIdList = new List<int?>();
+            string getAgentIdQuery = @"SELECT AgentId FROM Agents";
+
+            using (SqlConnection con = TravelExpertsConn.GetConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand(getAgentIdQuery, con))
+                {
+                    con.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    Customer Agents = new Customer();
+                    while (reader.Read())
+                    {
+                        Agents.AgentId = Convert.ToInt32(reader["AgentId"]);
+                        agentIdList.Add(Agents.AgentId);
+                    }
+                    con.Close();
+                }
+            }
+            return agentIdList;
+        }
     }
 }
