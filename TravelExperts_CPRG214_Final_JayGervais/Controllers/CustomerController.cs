@@ -28,6 +28,19 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Controllers
             return View(customer);
         }
 
+        public ActionResult PurchasedDetails()
+        {
+            int id = Convert.ToInt32(Session["CustomerId"]);
+            List<BookingDetail> purchasedDetailsList = BookingDetailDB.getPurchasedDetails(id);
+
+            decimal total = 0;
+            foreach (BookingDetail b in purchasedDetailsList)
+                total += b.BasePrice + b.AgencyCommission;
+            ViewBag.Cost = total.ToString("c");
+
+            return View(purchasedDetailsList);
+        }
+
         // GET: Customer/Create
         public ActionResult Create()
         {
