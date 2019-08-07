@@ -10,7 +10,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
     {
         public static SqlConnection GetConnection()
         {
-            string connectionString = @"data source=localhost\SAIT;initial catalog=TravelExperts;integrated security=True";
+            string connectionString = @"data source=localhost\SAITSQLEXPRESS;initial catalog=TravelExperts;integrated security=True";
             SqlConnection con = new SqlConnection(connectionString);
             return con;
         }

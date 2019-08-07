@@ -15,14 +15,14 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Experience An Unforgettable Adventure";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Get In Touch With Us";
 
             return View();
         }

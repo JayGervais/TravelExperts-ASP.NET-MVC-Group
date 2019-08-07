@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<TravelExperts_CPRG214_Final_JayGervais.Models.BookingDetail>
 
 @{
-    ViewBag.Title = "PurchasedDetails";
+    ViewBag.Title = "Account Details";
 }
 
-<h2>PurchasedDetails</h2>
+    <h2>Account Details</h2>
 
 <p>
     @*@Html.ActionLink("Create New", "Create")*@
@@ -23,9 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.BasePrice)
         </th>
-        <th>
+        <!--<th>
             @Html.DisplayNameFor(model => model.AgencyCommission)
-        </th>
+        </th>-->
         <th></th>
     </tr>
 
@@ -43,9 +43,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.BasePrice)            
         </td>
-        <td>
+        <!--<td>
             @Html.DisplayFor(modelItem => item.AgencyCommission)
-        </td>
+        </td>-->
         <td>
             @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |

@@ -27,6 +27,17 @@ textarea {
     max-width: 280px;
 }
 
+p {
+    font-size: 120%;
+    color: #004b4f;
+}
+
+.white {
+    color: #fff;
+    text-shadow: 0px 0px 0px rgba(150, 150, 150, 1);
+    padding-top: 20px;
+}
+
 .jumbotron {
     background-image: url('../Images/bridge.jpg');
     background-attachment: fixed;
@@ -52,8 +63,9 @@ textarea {
 }
 
 .btn.btn-primary.btn-lg {
-    background-color: #007a4b;
-    border-color: #007a4b;
+    background-color: #004b4f;
+    border-color: #004b4f;
+    border-radius: 0px;
 }
 
 a.btn.btn-primary.btn-lg:hover {
@@ -84,6 +96,8 @@ footer {
     width: 100%;
 }
 
+a.btn.btn-primarybtn-lg
+
 .btn-primary {
     background-color: #004b4f !important;
     border-color: #004b4f !important;
@@ -102,15 +116,144 @@ p.dates {
 
 .card-title {
     font-weight: bold;
+    opacity: 0.85;
     color: #004b4f;
     font-size: 30px;
 }
 
-.validation-summary-errors text-danger ul li {
-    list-style-type: none;
+.card-text.price {
+    font-weight: bold;
+    color: #004a1a;
+    opacity: 0.85;
+    font-size: 150%;
+}
+
+.lightcolor {
+    background-color: #f9f9f9;
+    border: 1px solid #004b4f;
 }
 
 img.img100radius {
+    width: 100%;  
+}
+
+.imghomebig {
     width: 100%;
-    border-radius:5%;
+    border: 1px solid #004b4f;
+    height: 250px;
+    background-image: url('../Images/boatmountains.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 60px;
+    padding-top: 60px;
+    text-align: center;
+}
+
+.imghomebigbottom {
+    width: 100%;
+    border: 1px solid #004b4f;
+    height: 250px;
+    background-image: url('../Images/blue-4145659_1920.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 60px;
+    padding-top: 70px;
+    text-align: center;
+}
+
+.topspace{
+    padding-top: 10px;
+}
+
+.imgcontactbig {
+    width: 100%;
+    border: 1px solid #004b4f;
+    height: 250px;
+    background-image: url('../Images/mediterranean.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 60px;
+    padding-top: 60px;
+    text-align: center;
+}
+
+.titlebox {
+    background-color: #004b4f;
+    padding-top: 0.5px;
+    padding-bottom: 5.5px;
+    text-align: center;
+}
+
+h2.titlebox {
+    color: #fff;
+}
+
+.imgadventure {
+    width: 100%;
+    border: 1px solid #004b4f;
+    height: 280px;
+    background-image: url('../Images/beachvan.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 60px;
+    padding-top: 60px;
+    text-align: center;
+}
+
+.imgabout {
+    width: 100%;
+    border: 1px solid #004b4f;
+    height: 280px;
+    background-image: url('../Images/mountainbeach.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 60px;
+    padding-top: 60px;
+    text-align: center;
+}
+
+.btn.btn-primary a {
+    color: #fff !important;
+    list-style-type: none;
+    text-decoration: none !important;
+}
+
+.btn.btn-primary a:hover {
+    list-style-type: none !important;
+    text-decoration: none !important;
+}
+
+div.btn.btn-primary > a {
+    text-decoration: none !important;
+}
+
+.navbar.navbar-inverse.navbar-fixed-top {
+    background-color: #004b4f;
+    border-color: #004b4f;
+    -webkit-box-shadow: 0 8px 25px -15px black;
+    -moz-box-shadow: 0 8px 25px -15px black;
+    box-shadow: 0 8px 25px -15px black;
+}
+
+.navbar.navbar-inverse.navbar-fixed-top a {
+    color: #d9d9d9;
+}
+
+h2 {
+    color: #004b4f;
+    font-weight: bold;
+}
+
+.pkgh2 {
+    padding-bottom: 15px;
 }

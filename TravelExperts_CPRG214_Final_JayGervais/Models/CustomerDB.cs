@@ -35,8 +35,25 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Models
                     sqlCommand.Parameters.AddWithValue("@CustPostal", cust.CustPostal);
                     sqlCommand.Parameters.AddWithValue("@CustCountry", cust.CustCountry);
                     sqlCommand.Parameters.AddWithValue("@CustHomePhone", cust.CustHomePhone);
-                    sqlCommand.Parameters.AddWithValue("@CustBusPhone", cust.CustBusPhone);
-                    sqlCommand.Parameters.AddWithValue("@CustEmail", cust.CustEmail);
+
+                    if (cust.CustBusPhone == null)
+                    {
+                        sqlCommand.Parameters.AddWithValue("@CustBusPhone", DBNull.Value);
+                    }
+                    else
+                    {
+                        sqlCommand.Parameters.AddWithValue("@CustBusPhone", cust.CustBusPhone);
+                    }
+
+                    if (cust.CustEmail == null)
+                    {
+                        sqlCommand.Parameters.AddWithValue("@CustEmail", DBNull.Value);
+                    }
+                    else
+                    {
+                        sqlCommand.Parameters.AddWithValue("@CustEmail", cust.CustEmail);
+                    }
+
                     sqlCommand.Parameters.AddWithValue("@CustPass", hash);
 
                     con.Open();

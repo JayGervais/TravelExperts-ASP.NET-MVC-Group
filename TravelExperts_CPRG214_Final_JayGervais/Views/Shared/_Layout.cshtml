@@ -32,6 +32,7 @@
                     }
                     else
                     {
+                        <li>@Html.ActionLink("Account", "Details", "Customer")</li>
                         <li>@Html.ActionLink("Logout", "Logout", "CustomerLogin")</li>
                     }
 
@@ -43,7 +44,10 @@
     <div class="jumbotron">
         <div class="container body-content">
             <h1>Travel Experts</h1>
-            <p><a href="~/Customer/Create" class="btn btn-primary btn-lg">Create an Account &raquo;</a></p>
+            @if (Session["CustomerId"] == null)
+            {
+                <p><a href="~/Customer/Create" class="btn btn-primary btn-lg">Create an Account &raquo;</a></p>
+            }
         </div>
     </div>
    
