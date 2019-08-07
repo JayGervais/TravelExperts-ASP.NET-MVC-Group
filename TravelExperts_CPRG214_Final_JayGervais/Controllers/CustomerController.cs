@@ -35,7 +35,7 @@ namespace TravelExperts_CPRG214_Final_JayGervais.Controllers
 
             decimal total = 0;
             foreach (BookingDetail b in purchasedDetailsList)
-                total += b.BasePrice; // + b.AgencyCommission;
+                total += b.BasePrice + b.AgencyCommission;
             ViewBag.Cost = total.ToString("c");
 
             return View(purchasedDetailsList);

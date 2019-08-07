@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-
+/// <summary>
+/// Booking Details methods by Hilson Lloyd
+/// </summary>
 namespace TravelExperts_CPRG214_Final_JayGervais.Models
 {
     public class BookingDetailDB

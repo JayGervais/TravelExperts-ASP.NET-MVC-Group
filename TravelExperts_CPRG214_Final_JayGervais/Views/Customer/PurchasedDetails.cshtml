@@ -2,10 +2,16 @@
 
 @{
     ViewBag.Title = "Account Details";
+
+    if (Session["CustomerId"] == null)
+    {
+        Response.Redirect("~/CustomerLogin/Login");
+    }
 }
-
-    <h2>Account Details</h2>
-
+<h2>Account Details</h2>
+<!--
+    Account Details page by Hilson Lloysd
+-->
 <p>
     @*@Html.ActionLink("Create New", "Create")*@
 </p>
@@ -23,36 +29,37 @@
         <th>
             @Html.DisplayNameFor(model => model.BasePrice)
         </th>
-        <!--<th>
+        <th>
             @Html.DisplayNameFor(model => model.AgencyCommission)
-        </th>-->
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookingId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Destination)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BasePrice)            
-        </td>
-        <!--<td>
-            @Html.DisplayFor(modelItem => item.AgencyCommission)
-        </td>-->
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BasePrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgencyCommission)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
 
 </table>
 <p>Total Cost: @ViewBag.Cost</p>

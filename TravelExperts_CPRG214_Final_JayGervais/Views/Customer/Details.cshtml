@@ -104,7 +104,14 @@ Customer Details page Up by Jay Gervais
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerId })
+    @if (Session["CustomerId"] == null)
+    {
+        Response.Redirect("~/CustomerLogin/Login");
+    }
+    else
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerId })
+    }
 </p>
 <div class="btn btn-primary">
     @Html.ActionLink("List Purchased Products", "PurchasedDetails")
